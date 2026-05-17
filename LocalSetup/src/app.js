@@ -20,7 +20,7 @@ app.get("/mongoose",async(req,res)=>{
         })
     }
     res.json({reply:"connected",database:mongoose.connection.name})
-})
+})  
 
 app.listen('8080',()=>{
     console.log("app is listening on port 8080");
