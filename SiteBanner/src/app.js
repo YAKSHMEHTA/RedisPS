@@ -25,8 +25,11 @@ app.get("/banner",async(req,res)=>{
     } catch (e) {
         console.log(e);
     }
-    
-    
+})
+
+app.get("/banner/exists",async(req,res)=>{
+    const exists = await redis.exists(bannerKey);
+    res.json({res:exists})
 })
 
 
