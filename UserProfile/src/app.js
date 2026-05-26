@@ -16,6 +16,16 @@ app.get("/user/:id/getjson",async(req,res)=>{
     res.json({users: raw ? JSON.parse(raw):null})
 })
 
-app.listen("3030",()=>{
+app.post("/user/:id/hash",async(req,res)=>{
+    await redis.hset(`user:${req.params.id}:hash`,req.body)
+    res.json({msg:"success"})
+})
+
+app.get("/user/:id/gethash",async(req,res)=>{
+    const raw = await redis.hgetall(`user:${req.params.id}:hash`);
+    res.json({raw});
+})
+
+app.listen("3033",()=>{
     console.log("app is running on port 3030")
 })
